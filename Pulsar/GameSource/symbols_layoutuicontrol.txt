@@ -1,0 +1,17 @@
+#LayoutUIControl
+GetRuntimeTypeInfo__15LayoutUIControlCFv = 0x80636bd0
+GetClassName__15LayoutUIControlCFv = 0x8063d788
+__ct__15LayoutUIControlFv = 0x8063d798
+__dt__15LayoutUIControlFv = 0x8063d8c0
+LoadNewLayout__15LayoutUIControlFPCcPCc = 0x8063D954
+Init__15LayoutUIControlFv = 0x8063dac0
+Update__15LayoutUIControlFv = 0x8063DB00
+Draw__15LayoutUIControlFUi = 0x8063DB84
+SetTextBoxMessage__15LayoutUIControlFPCcUiPCQ24Text4Info = 0x8063dcbc
+SetMessage__15LayoutUIControlFUiPCQ24Text4Info = 0x8063ddb4
+SetPicturePane__15LayoutUIControlFPCcPCc = 0x8063e0f0
+SetPaneVisibility__15LayoutUIControlFPCcb = 0x8063e54c
+SetMiiPane__15LayoutUIControlFPCcRC8MiiGroupUiUc = 0x8063e3dc
+ResetTextBoxMessage__15LayoutUIControlFPCc = 0x8063deec
+vf_0x30__15LayoutUIControlFv = 0x8063E61c
+__vt__15LayoutUIControl = 0x808befb4

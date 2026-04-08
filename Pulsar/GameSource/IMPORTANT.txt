@@ -1,0 +1,1 @@
+Due to the ever changing nature of Pulsar and especially Pulsar based distributions, it is best for you to copy the contents in "symbols_layoutuicontrol.txt" to your symbols file, replacing the section labelled "#LayoutUIControl" up until the section labelled "#LayoutUIControlScaleFade".

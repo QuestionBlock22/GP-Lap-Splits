@@ -1,0 +1,9 @@
+# Force the game to load page ID 0x2d, Time Trials splits, instead of 0x2f, race results.
+
+# WRITE32 @
+# PAL:    0462473c 3800002d
+# NTSC-U: 045f3888 3800002d
+# NTSC-J: 04623e88 3800002d
+# NTSC-K: 04612b34 3800002d
+
+# li r0, 0x2f -> li r0, 0x2d
