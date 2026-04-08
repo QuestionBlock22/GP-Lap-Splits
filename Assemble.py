@@ -241,7 +241,7 @@ def main():
         prepareAssembly()
         print("\nOperation completed successfully.")
     else:
-        print("PyiiASMH is required for this build script to function. Download PyiiASMH from 'https://www.github.com/JoshuaMK/PyiiASMH' from the releases section and put it inside the tools directory.\n")
+        print("PyiiASMH is required for this build script to function. Download PyiiASMH from 'https://github.com/JoshuaMKW/pyiiasmh' from the releases section and put it inside the tools directory.\n")
         sys.exit
 
 main()
