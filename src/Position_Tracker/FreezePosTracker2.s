@@ -56,15 +56,13 @@ beq checkFloatsTASplits
 cmpwi r0, 5                             # pageState = Exiting
 beq solveAnimation
 
-# Check if the current game mode is Grand Prix.
-lis r11, raceDataBase@h
+# Check if f1 is less than f0 or f1 is greater than f0, depending on the current page (GPHUDPage or TASplits page).
+checkFloatsGPHUD:
+lis r11, raceDataBase@h                 # Check if the current game mode is Grand Prix.
 lwz r11, -raceDataBase@l (r11)
 lwz r0, 0xB70 (r11)                     # racedata->racesScenario->settings->gameMode
 cmpwi r0, 0
 bne solveAnimation
-
-# Check if f1 is less than f0 or f1 is greater than f0, depending on the current page (GPHUDPage or TASplits page).
-checkFloatsGPHUD:
 lis r12, frameNumber@h
 lfs f0, -frameNumber@l (r12)
 fcmpo cr0, f0, f1
