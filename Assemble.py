@@ -104,16 +104,16 @@ def getBaseAddress(regionLetter):
 
     # A list of C2 hooks
     baseAddress = [
+        DisableElementsInGP,
         FixTimerAnimation,
         RegisterPage,
-        DisableElementsInGP,
         FreezePosTracker1,
         FreezePosTracker2,
+        LoadControl,
         NoPositionTrackerEntranceAnim,
-        PreventPositionChangeSFX,
-        UpdateControlCount,
         PreventPositionChangeAnim,
-        LoadControl
+        PreventPositionChangeSFX,
+        UpdateControlCount
     ]
 
     list(OrderedDict.fromkeys(baseAddress))
@@ -121,39 +121,36 @@ def getBaseAddress(regionLetter):
     if regionLetter == 'p' or regionLetter == 'P':
         return baseAddress
     elif regionLetter == 'e' or regionLetter == 'E':
-        baseAddress[0] = "807edd00"
-        baseAddress[1] = "805fb704"
-        baseAddress[2] = "80834194"
-        baseAddress[5] = "807ea3f8"
-        baseAddress[6] = "807ea49c"
-        baseAddress[7] = "80833ec4"
-        baseAddress[8] = "807ea538"
-        baseAddress[9] = "8083402c"
+        baseAddress[0] = "80834194"
+        baseAddress[1] = "807edd00"
+        baseAddress[2] = "805fb704"
+        baseAddress[5] = "8083402c"
+        baseAddress[6] = "807ea3f8"
+        baseAddress[7] = "807ea538"
+        baseAddress[8] = "807ea49c"
+        baseAddress[9] = "80833ec4"
 
     elif regionLetter == 'j' or regionLetter == 'J':
-        baseAddress[0] = "807f7e6c"
-        baseAddress[1] = "8062bd04"
-        baseAddress[2] = "80855290"
-        baseAddress[5] = "807f408c"
-        baseAddress[6] = "807f4130"
-        baseAddress[7] = "80854fc0"
-        baseAddress[8] = "807f41cc"
-        baseAddress[9] = "80855128"
-
+        baseAddress[0] = "80855290"
+        baseAddress[1] = "807f7e6c"
+        baseAddress[2] = "8062bd04"
+        baseAddress[5] = "80855128"
+        baseAddress[6] = "807f408c"
+        baseAddress[7] = "807f41cc"
+        baseAddress[8] = "807f4130"
+        baseAddress[9] = "80854fc0"
 
     elif regionLetter == 'k' or regionLetter == 'K':
-        baseAddress[0] = "807e6bc0"
-        baseAddress[1] = "8061a9b0"
-        baseAddress[2] = "80843fe4"
-        baseAddress[5] = "807e2de0"
-        baseAddress[6] = "807e2e84"
-        baseAddress[7] = "80843d14"
-        baseAddress[8] = "807e2f20"
-        baseAddress[9] = "80843e7c"
-
+        baseAddress[0] = "80843fe4"
+        baseAddress[1] = "807e6bc0"
+        baseAddress[2] = "8061a9b0"
+        baseAddress[5] = "80843e7c"
+        baseAddress[6] = "807e2de0"
+        baseAddress[7] = "807e2f20"
+        baseAddress[8] = "807e2e84"
+        baseAddress[9] = "80843d14"
 
     return baseAddress
-
 
 def assembleFromFile(regionLetter, curDir, addressCycle):
     baseAddress = getBaseAddress(regionLetter)
@@ -232,7 +229,6 @@ def prepareAssembly():
         os.remove(codeFile)
     assembleCode(region, regionLetter, writeAddress)
     os.remove(finalOut)
-
 
 def main():
     pyiiasmh_path = Path(pyiiasmh)
