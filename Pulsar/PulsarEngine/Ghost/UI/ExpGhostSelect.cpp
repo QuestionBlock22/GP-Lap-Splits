@@ -228,7 +228,7 @@ void BeforeEntranceAnimations(Pages::TTSplits* page) {
 
     //Clear the ghost save message in Grand Prix races and prevent saving. Addition by QB22.
     if (scenario.settings.gamemode == MODE_GRAND_PRIX) {
-        &~TTSplits.ResetTextBoxMessage(textBoxName);
+        page->savedGhostMessage.ResetTextBoxMessage(textBoxName);
         return;
     }
 
