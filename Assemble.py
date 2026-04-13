@@ -117,6 +117,7 @@ def getBaseAddress(regionLetter):
     ]
 
     list(OrderedDict.fromkeys(baseAddress))
+    baseAddress.sort
 
     if regionLetter == 'p' or regionLetter == 'P':
         return baseAddress
@@ -162,7 +163,7 @@ def assembleFromFile(regionLetter, curDir, addressCycle):
     tempCode = "tmp.s"
     asmOut = "asmOut.txt"
 
-    for file in Path(curDir).rglob('*.s'):
+    for file in sorted(Path(curDir).rglob('*.s')):
         codeFile = f"{curDir}/{file.name}"
 
         with open(codeFile, 'r') as code, open(tempCode, 'w') as tmp:
