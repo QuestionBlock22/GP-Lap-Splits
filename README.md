@@ -1,6 +1,6 @@
 ## Show Lap Splits after a Grand Prix Race
 
-This is a gecko code that shows the the player's lap splits, along with the final rank placement, after a Grand Prix race.
+This is a gecko code that shows the player's lap splits, along with their final rank placement, after a Grand Prix race.
 
 To assemble this code, you may ONLY use PyiiASMH. Download the tool from the releases section (don't clone it) and place the "python3.8.rar" file in the tools folder, then extract it in its place. For more information, see "BUILDING.md."
 
