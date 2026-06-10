@@ -59,7 +59,7 @@
     blr                                 # Don't go back to the EVA, please.
 .endm
 
-# void CtrlRaceRankRank::initSelf
+# void CtrlRaceRankNum::initSelf
 
 # Initialize control coordinates.
 stackPush
