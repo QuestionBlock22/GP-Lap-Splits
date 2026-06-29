@@ -10,6 +10,7 @@
 # Inject @
 # Global: 800017B0
 
+# .set region, '' # Fill with P, E, J, or K to assemble for a particular region.
 .if (region == 'P' || region == 'p')
     # Racedata
     .set raceDataBase, 0x809c28d8 # Resolves to 809bd728 (Racedata::spInstance)
@@ -46,21 +47,19 @@
 
 # Check the page state of the Time Trials splits page.
 lwz r12, 0x38 (r3)
-cmpwi r12, 0                            # Anti-freeze
+cmpwi r12, 0                                    # Anti-freeze
 beq checkFloatsGPHUD
-lwz r0, 0x8 (r12)                       # CtrlRaceRankNum::vtable->(&TimeAttackSplitsPage::vtable)->pageState
-cmpwi r0, 1                             # pageState = Inactive
+lwz r0, 0x8 (r12)                               # CtrlRaceRankNum::vtable->TimeAttackSplitsPage::vtable->pageState
+cmpwi r0, 3                                     # pageState = Activated
 beq checkFloatsTASplits
-cmpwi r0, 3                             # pageState = Activated
-beq checkFloatsTASplits
-cmpwi r0, 5                             # pageState = Exiting
+cmpwi r0, 5                                     # pageState = Exiting
 beq solveAnimation
 
 # Check if f1 is less than f0 or f1 is greater than f0, depending on the current page (GPHUDPage or TASplits page).
 checkFloatsGPHUD:
-lis r11, raceDataBase@h                 # Check if the current game mode is Grand Prix.
+lis r11, raceDataBase@h                         # Check if the current game mode is Grand Prix.
 lwz r11, -raceDataBase@l (r11)
-lwz r0, 0xB70 (r11)                     # racedata->racesScenario->settings->gameMode
+lwz r0, 0xB70 (r11)                             # racedata->racesScenario->settings->gameMode
 cmpwi r0, 0
 bne solveAnimation
 lis r12, frameNumber@h
@@ -72,6 +71,10 @@ fmr f1, f0
 b solveAnimation
 
 checkFloatsTASplits:
+# Out-of-bounds wipe fix. Thanks to Wingcapman for his documentation of the game's UI system!
+stfs f4, 0x24 (r3)
+
+# Check floats.
 lis r12, frameNumber@h
 lfs f0, -frameNumber@l (r12)
 fcmpo cr0, f0, f1
@@ -83,4 +86,4 @@ solveAnimation:
 lis r11, UIControl_solveAnimation@h
 ori r11, r11, UIControl_solveAnimation@l
 mtctr r11
-bctr                                    # UIControl::solveAnimation
+bctr                                           # UIControl::solveAnimation

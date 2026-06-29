@@ -27,9 +27,7 @@ bctrl                   # Original instruction.
 lwz r11, 0x38 (r30)
 cmpwi r11, 0
 beq end                 # Anti-freeze
-lwz r0, 0x8 (r11)       # CtrlRaceRankNum->(TimeAttackSplitsPage&)->pageState
-cmpwi r0, 1             # Probably not needed. Will keep as a fail-safe.
-beq disableSFX
+lwz r0, 0x8 (r11)       # CtrlRaceRankNum::vtable->TimeAttackSplitsPage::vtable->pageState
 cmpwi r0, 3             # Meat and mushrooms.
 bne end
 

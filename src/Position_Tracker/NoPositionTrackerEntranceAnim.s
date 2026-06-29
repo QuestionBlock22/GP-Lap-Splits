@@ -35,23 +35,25 @@
     .err
 .endif
 
+.set PAGE_TIME_ATTACK_SPLITS, 0x2d
+
 lis r11, CtrlRaceTime_getPage@h
 ori r11, r11, CtrlRaceTime_getPage@l
 mtctr r11
-bctrl                                   # CtrlRaceTime::getPage (Says CtrlRaceTime, but technically can be used for any control.)
+bctrl                                           # CtrlRaceTime::getPage (Says CtrlRaceTime, but technically can be used for any control.)
 lis r11, Page_getPageId@h
 ori r11, r11, Page_getPageId@l
 mtctr r11
-bctrl                                   # Page::getPageId
-cmpwi r3, 0x2d
+bctrl                                           # Page::getPageId
+cmpwi r3, PAGE_TIME_ATTACK_SPLITS
 beq end
 
-prcessInAnimation:
+processInAnimation:
 mr r3, r30
 lwz r12, 0 (r3)
 lwz r12, 0x3c (r12)
 mtctr r12
-bctrl                                   # CtrlRaceBase::processInAnimation (Virtual function/Original instruction set)
+bctrl                                           # CtrlRaceBase::processInAnimation (Virtual function/Original instruction set)
 
 end:
 lis r12, return@h
