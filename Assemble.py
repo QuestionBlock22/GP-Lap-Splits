@@ -32,7 +32,7 @@ def getRegion():
     regionLetter = input("Input the letters P, E, J or K for your region. Or type 'all' to assemble every region.\n")
     if regionLetter == "all":
         return regionLetter
-    if len(regionLetter) < 1:
+    if len(regionLetter) > 1:
             print ("No more than one character can be input. Exiting.\n")
             sys.exit()
     if regionLetter == 'p' or regionLetter == 'P' or regionLetter == 'e' or regionLetter == 'E' or regionLetter == 'j' or regionLetter == 'J' or regionLetter == 'k' or regionLetter == 'K':
