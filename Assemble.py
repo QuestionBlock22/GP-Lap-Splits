@@ -29,14 +29,16 @@ finalOut = "finalOut.txt"
 errorCount = 0
 
 def getRegion():
-    regionLetter = input("Input the letters P, E, J or K for your region.\n")
-    if len(regionLetter) > 1:
+    regionLetter = input("Input the letters P, E, J or K for your region. Or type 'all' to assemble every region.\n")
+    if regionLetter == "all":
+        return regionLetter
+    if len(regionLetter) < 1:
             print ("No more than one character can be input. Exiting.\n")
             sys.exit()
     if regionLetter == 'p' or regionLetter == 'P' or regionLetter == 'e' or regionLetter == 'E' or regionLetter == 'j' or regionLetter == 'J' or regionLetter == 'k' or regionLetter == 'K':
         return regionLetter
     else:
-        print("Only input the letters, P, E, J, or K. Exiting.")
+        print("Only input the letters, P, E, J, or K, or the word 'all.' Exiting.")
         sys.exit()
 
 def processRegion(regionLetter):
@@ -221,8 +223,7 @@ def assembleCode(region, regionLetter, writeAddress,):
     with open(f"{region}.txt", 'a') as codeOutput:
         codeOutput.write(f"\n{codeDesc}")
 
-def prepareAssembly():
-    regionLetter = getRegion()
+def writeAssembly(regionLetter):
     region = processRegion(regionLetter)
     writeAddress = getWriteAddress(regionLetter)
     codeFile = Path(f"{region}.txt")
@@ -230,6 +231,30 @@ def prepareAssembly():
         os.remove(codeFile)
     assembleCode(region, regionLetter, writeAddress)
     os.remove(finalOut)
+
+def prepareAssembly():
+    regionLetter = getRegion()
+    if regionLetter == "all":
+        regionList = [
+            'p',
+            'e',
+            'j',
+            'k'
+        ]
+        regionCycle = 0
+        marketList = [
+            "Europe",
+            "North America",
+            "Japan",
+            "South Korea"
+        ]
+        for entry in regionList:
+            print(f"\nAssembling for {marketList[regionCycle]}.\n")
+            regionLetter = regionList[regionCycle]
+            writeAssembly(regionLetter)
+            regionCycle += 1
+        return
+    writeAssembly(regionLetter)
 
 def main():
     pyiiasmh_path = Path(pyiiasmh)
